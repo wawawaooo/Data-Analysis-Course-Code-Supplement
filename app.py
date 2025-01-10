@@ -2,6 +2,7 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
 import style
+import os
 
 # Load the cleaned data
 wrangling_df = pd.read_csv("wrangling_df.csv")
@@ -405,7 +406,8 @@ def update_plot3(month, year):
 
 # Run the application
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    port = int(os.environ.get('PORT', 8050))
+    app.run_server(debug=True, host='0.0.0.0', port=port)
 
 
 
